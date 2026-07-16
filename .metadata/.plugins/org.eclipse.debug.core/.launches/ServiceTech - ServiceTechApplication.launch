@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.springframework.ide.eclipse.boot.launch">
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-        <listEntry value="/ServiceTech/src/main/java/com/servicetech/ServiceTechApplication.java"/>
+        <listEntry value="/ServiceTech_API_REST/src/main/java/com/servicetech/ServiceTechApplication.java"/>
     </listAttribute>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
         <listEntry value="1"/>
@@ -9,7 +9,7 @@
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_EXCLUDE_TEST_CODE" value="true"/>
     <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.springframework.ide.eclipse.boot.launch.BootMavenClassPathProvider"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.servicetech.ServiceTechApplication"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="ServiceTech"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="ServiceTech_API_REST"/>
     <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.springframework.ide.eclipse.boot.launch.BootMavenSourcePathProvider"/>
     <stringAttribute key="process_factory_id" value="org.springframework.ide.eclipse.boot.launch.process.BootProcessFactory"/>
     <booleanAttribute key="spring.boot.auto-connect" value="true"/>
