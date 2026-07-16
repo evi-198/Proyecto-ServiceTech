@@ -1,0 +1,5 @@
+package com.servicetech.security;
+
+public class JwtService {
+
+}

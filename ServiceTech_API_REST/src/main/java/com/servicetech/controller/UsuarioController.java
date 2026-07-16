@@ -1,0 +1,134 @@
+package com.servicetech.controller;
+
+import com.servicetech.dto.UsuarioRequestDTO;
+import com.servicetech.dto.UsuarioResponseDTO;
+import com.servicetech.model.Rol;
+import com.servicetech.model.Usuario;
+import com.servicetech.repository.RolRepository;
+import com.servicetech.repository.UsuarioRepository;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * Controlador REST para gestionar los usuarios del sistema.
+ * Sirve principalmente para operaciones de administrador sobre usuarios,
+ * incluyendo clientes, técnicos y otros perfiles con acceso al sistema.
+ */
+@RestController
+@RequestMapping("/api")
+@CrossOrigin
+public class UsuarioController {
+
+    private final UsuarioRepository usuarioRepository;
+    private final RolRepository rolRepository;
+    private final PasswordEncoder passwordEncoder;
+
+    public UsuarioController(UsuarioRepository usuarioRepository, RolRepository rolRepository, PasswordEncoder passwordEncoder) {
+        this.usuarioRepository = usuarioRepository;
+        this.rolRepository = rolRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    /**
+     * Lista todos los usuarios registrados.
+     * Esta consulta suele usarse en funciones de administrador para visualizar
+     * el catálogo de clientes y técnicos del sistema.
+     */
+    @GetMapping("/usuarios")
+    @PreAuthorize("hasRole('ADMINISTRADOR')")
+    public ResponseEntity<List<UsuarioResponseDTO>> listarUsuarios() {
+        List<UsuarioResponseDTO> usuarios = usuarioRepository.findAll().stream()
+                .map(usuario -> new UsuarioResponseDTO(
+                        usuario.getIdUsuario(),
+                        usuario.getNombre(),
+                        usuario.getCorreo(),
+                        usuario.getTelefono(),
+                        usuario.getRol().getNombre()
+                ))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(usuarios);
+    }
+
+    /**
+     * Crea un nuevo usuario a partir de los datos enviados en la solicitud.
+     * Permite registrar un cliente, técnico u otro perfil según el rol asignado.
+     */
+    @PostMapping("/usuarios")
+    @PreAuthorize("hasRole('ADMINISTRADOR')")
+    public ResponseEntity<UsuarioResponseDTO> crearUsuario(@RequestBody UsuarioRequestDTO request) {
+        Rol rol = rolRepository.findByNombre(request.getRol())
+                .orElseThrow(() -> new RuntimeException("Rol no válido"));
+
+        Usuario usuario = new Usuario(
+                request.getNombre(),
+                request.getCorreo(),
+                passwordEncoder.encode(request.getPassword()),
+                request.getTelefono(),
+                rol
+        );
+
+        Usuario guardado = usuarioRepository.save(usuario);
+
+        return ResponseEntity.ok(new UsuarioResponseDTO(
+                guardado.getIdUsuario(),
+                guardado.getNombre(),
+                guardado.getCorreo(),
+                guardado.getTelefono(),
+                guardado.getRol().getNombre()
+        ));
+    }
+
+    /**
+     * Actualiza la información de un usuario existente por su identificador.
+     * Se utiliza cuando un administrador o el propio usuario necesita modificar datos.
+     */
+    @PutMapping("/usuarios/{id}")
+    @PreAuthorize("hasRole('ADMINISTRADOR')")
+    public ResponseEntity<UsuarioResponseDTO> actualizarUsuario(
+            @PathVariable Integer id,
+            @RequestBody UsuarioRequestDTO request) {
+
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        Rol rol = rolRepository.findByNombre(request.getRol())
+                .orElseThrow(() -> new RuntimeException("Rol no válido"));
+
+        usuario.setNombre(request.getNombre());
+        usuario.setCorreo(request.getCorreo());
+        usuario.setPassword(passwordEncoder.encode(request.getPassword()));
+        usuario.setTelefono(request.getTelefono());
+        usuario.setRol(rol);
+
+        Usuario actualizado = usuarioRepository.save(usuario);
+
+        return ResponseEntity.ok(new UsuarioResponseDTO(
+                actualizado.getIdUsuario(),
+                actualizado.getNombre(),
+                actualizado.getCorreo(),
+                actualizado.getTelefono(),
+                actualizado.getRol().getNombre()
+        ));
+    }
+
+    /**
+     * Elimina un usuario por su identificador si existe.
+     * Normalmente esta acción está reservada para operaciones de administrador.
+     */
+    @DeleteMapping("/usuarios/{id}")
+    @PreAuthorize("hasRole('ADMINISTRADOR')")
+    public ResponseEntity<Void> eliminarUsuario(@PathVariable Integer id) {
+        if (!usuarioRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+
+        usuarioRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+}

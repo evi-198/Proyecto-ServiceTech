@@ -1,0 +1,179 @@
+package com.servicetech.controller;
+
+import com.servicetech.dto.ActualizarEstadoDTO;
+import com.servicetech.dto.AsignarTecnicoRequestDTO;
+import com.servicetech.dto.ObservacionRequestDTO;
+import com.servicetech.dto.ObservacionResponseDTO;
+import com.servicetech.dto.ServicioAdminResponseDTO;
+import com.servicetech.dto.ServicioRequestDTO;
+import com.servicetech.dto.ServicioResponseDTO;
+import com.servicetech.service.ObservacionService;
+import com.servicetech.service.ServicioService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+/**
+ * Controlador REST para gestionar servicios y observaciones del sistema.
+ * Agrupa las operaciones que usan clientes y técnicos para crear, consultar y actualizar servicios.
+ */
+@RestController
+@RequestMapping("/api")
+@CrossOrigin
+public class ServicioController {
+
+    private final ServicioService servicioService;
+    private final ObservacionService observacionService;
+
+    public ServicioController(ServicioService servicioService, ObservacionService observacionService) {
+        this.servicioService = servicioService;
+        this.observacionService = observacionService;
+    }
+
+    // ════════════════════════════════════════════════════════════
+    // SERVICIOS
+    // ════════════════════════════════════════════════════════════
+
+    /**
+     * Crea un nuevo servicio a partir de la solicitud recibida.
+     * Esta acción suele ser iniciada por un cliente al solicitar un servicio.
+     */
+    @PostMapping("/servicios")
+    public ResponseEntity<ServicioResponseDTO> crearServicio(
+            @RequestBody ServicioRequestDTO request) {
+        ServicioResponseDTO response = servicioService.crearServicio(request);
+        return ResponseEntity.ok(response);
+    }
+
+    /**
+     * Recupera todos los servicios asociados a un cliente.
+     * Permite al cliente consultar su historial y estado general.
+     */
+    @GetMapping("/cliente/{idCliente}")
+    public List<ServicioResponseDTO> listarPorCliente(
+            @PathVariable Integer idCliente) {
+        return servicioService.listarPorCliente(idCliente);
+    }
+
+    /**
+     * Recupera únicamente los servicios activos de un cliente.
+     * Es útil para que el cliente vea qué solicitudes están en curso.
+     */
+    @GetMapping("/cliente/{idCliente}/activos")
+    public List<ServicioResponseDTO> listarActivos(
+            @PathVariable Integer idCliente) {
+        return servicioService.listarActivosPorCliente(idCliente);
+    }
+
+    /**
+     * Recupera el historial de servicios finalizados o cancelados de un cliente.
+     * Sirve para revisar solicitudes cerradas o canceladas.
+     */
+    @GetMapping("/cliente/{idCliente}/historial")
+    public List<ServicioResponseDTO> listarHistorial(
+            @PathVariable Integer idCliente) {
+        return servicioService.listarHistorialPorCliente(idCliente);
+    }
+
+    /**
+     * Obtiene los servicios asignados a un técnico.
+     * Esta vista permite al técnico ver su carga actual de trabajo.
+     */
+    @GetMapping("/tecnico/{idTecnico}")
+    public ResponseEntity<List<ServicioResponseDTO>> obtenerPorTecnico(@PathVariable Long idTecnico) {
+        List<ServicioResponseDTO> lista = servicioService.obtenerServiciosPorTecnico(idTecnico);
+        return ResponseEntity.ok(lista);
+    }
+
+    /**
+     * Obtiene los próximos servicios programados para un técnico.
+     * Ayuda al técnico a planificar su agenda.
+     */
+    @GetMapping("/tecnico/{idTecnico}/proximos")
+    public ResponseEntity<List<ServicioResponseDTO>> obtenerProximosPorTecnico(@PathVariable Long idTecnico) {
+        List<ServicioResponseDTO> lista = servicioService.obtenerProximosServiciosPorTecnico(idTecnico);
+        return ResponseEntity.ok(lista);
+    }
+
+    /**
+     * Actualiza el estado de un servicio mediante el identificador del estado.
+     * Principalmente es usada por técnicos para avanzar o cerrar órdenes.
+     */
+    @PutMapping("/servicios/{idServicio}/estado")
+    public ResponseEntity<ServicioResponseDTO> actualizarEstadoServicio(
+            @PathVariable Integer idServicio,
+            @RequestBody ActualizarEstadoDTO request
+    ) {
+        ServicioResponseDTO response = servicioService.actualizarEstadoServicio(
+                idServicio,
+                request.getIdEstadoServicio()
+        );
+
+        return ResponseEntity.ok(response);
+    }
+
+    // ════════════════════════════════════════════════════════════
+    // OBSERVACIONES
+    // ════════════════════════════════════════════════════════════
+
+    /**
+     * Lista las observaciones asociadas a un servicio.
+     * Permite revisar el seguimiento del trabajo por parte del técnico o del personal encargado.
+     */
+    @GetMapping("/servicios/{idServicio}/observaciones")
+    public ResponseEntity<List<ObservacionResponseDTO>> listarObservaciones(
+            @PathVariable Integer idServicio) {
+        return ResponseEntity.ok(observacionService.listarPorServicio(idServicio));
+    }
+
+    /**
+     * Registra una nueva observación para un servicio.
+     * Suele usarse cuando un técnico agrega comentarios o avances al proceso.
+     */
+    @PostMapping("/observaciones")
+    public ResponseEntity<ObservacionResponseDTO> registrarObservacion(
+            @RequestBody ObservacionRequestDTO request) {
+        return ResponseEntity.ok(observacionService.registrarObservacion(request));
+    }
+
+    /**
+     * Elimina una observación existente por su identificador.
+     * Esta acción es más específica y está ligada al manejo de seguimiento del servicio.
+     */
+    @DeleteMapping("/observaciones/{idObservacion}")
+    public ResponseEntity<Void> eliminarObservacion(
+            @PathVariable Integer idObservacion) {
+        observacionService.eliminarObservacion(idObservacion);
+        return ResponseEntity.noContent().build();
+    }
+    
+ // ════════════════════════════════════════════════════════════
+    // ÓRDENES (vista admin)
+    // ════════════════════════════════════════════════════════════
+    /**
+     * Recupera todas las órdenes registradas en el sistema.
+     * También permite filtrarlas por estado cuando se recibe dicho parámetro.
+     */
+    @GetMapping("/servicios")
+    public ResponseEntity<List<ServicioAdminResponseDTO>> listarTodasLasOrdenes(
+            @RequestParam(required = false) String estado) {
+        return ResponseEntity.ok(servicioService.listarTodas(estado));
+    }
+
+    /**
+     * Asigna un técnico a una orden de servicio.
+     * Esta operación es utilizada por el administrador para distribuir
+     * las órdenes disponibles entre los técnicos registrados.
+     */
+    @PutMapping("/servicios/{idServicio}/tecnico")
+    public ResponseEntity<ServicioAdminResponseDTO> asignarTecnico(
+            @PathVariable Integer idServicio,
+            @RequestBody AsignarTecnicoRequestDTO request) {
+
+        ServicioAdminResponseDTO response = servicioService.asignarTecnico(
+                idServicio, request.getIdTecnico()
+        );
+        return ResponseEntity.ok(response);
+    }
+}

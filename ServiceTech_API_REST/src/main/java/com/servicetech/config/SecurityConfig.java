@@ -1,0 +1,87 @@
+package com.servicetech.config;
+
+import com.servicetech.security.JwtAuthFilter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+/**
+ * Configuración central de Spring Security para el API de ServiceTech.
+ *
+ * Define:
+ * - Qué endpoints son públicos (login) y cuáles requieren autenticación.
+ * - Que la app NO use sesiones de servidor (STATELESS), porque la
+ *   autenticación se maneja con JWT en cada request.
+ * - El PasswordEncoder (BCrypt) usado para guardar/verificar contraseñas.
+ * - El JwtAuthFilter, que se ejecuta antes que el filtro estándar de
+ *   Spring para validar el token en cada request entrante.
+ *
+ * @EnableMethodSecurity habilita las anotaciones @PreAuthorize que se usan
+ * en los controllers para restringir endpoints según el rol del usuario
+ * (por ejemplo: @PreAuthorize("hasRole('ADMINISTRADOR')")).
+ */
+@Configuration
+@EnableMethodSecurity
+public class SecurityConfig {
+
+    private final JwtAuthFilter jwtAuthFilter;
+
+    public SecurityConfig(JwtAuthFilter jwtAuthFilter) {
+        this.jwtAuthFilter = jwtAuthFilter;
+    }
+
+    /**
+     * Bean que Spring usa para hashear y verificar contraseñas con BCrypt.
+     * Se inyecta luego en UsuarioServiceImpl para el login/registro.
+     */
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    /**
+     * Bean necesario para poder autenticar manualmente en el AuthController
+     * (validar correo + password contra CustomUserDetailsService).
+     */
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
+
+    /**
+     * Cadena de filtros de seguridad: aquí se decide qué puede verse sin
+     * autenticarse y qué no.
+     */
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                // No usamos formularios ni cookies de sesión: es un API REST puro.
+                .csrf(AbstractHttpConfigurer::disable)
+
+                // Sin sesión en el servidor: cada request se autentica con su propio JWT.
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+                .authorizeHttpRequests(auth -> auth
+                        // El login (y a futuro un posible registro) quedan abiertos.
+                        .requestMatchers("/api/auth/**").permitAll()
+                        // Todo lo demás requiere un JWT válido.
+                        .anyRequest().authenticated()
+                )
+
+                // Nuestro filtro revisa el JWT ANTES de que Spring intente
+                // cualquier otro mecanismo de autenticación por defecto.
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
+    }
+}
