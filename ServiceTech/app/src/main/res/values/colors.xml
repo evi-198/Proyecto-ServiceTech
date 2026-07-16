@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Colores de Identidad ServiceTech -->
+    <color name="color_pendiente">#F59E0B</color> <!-- Naranja Sistema -->
+    <color name="color_finalizado">#2BB673</color> <!-- Verde Sistema -->
+    <color name="color_proceso">#2196F3</color>    <!-- Azul Sistema -->
+    <color name="color_asignado">#673AB7</color>   <!-- Púrpura Sistema -->
+    <color name="color_cancelado">#EF4444</color>   <!-- Rojo Sistema -->
+
+    <!-- Otros colores usados -->
+    <color name="blue_500">#2196F3</color>
+    <color name="yellow">#F4B400</color>
+    <color name="blue">#2196F3</color>
+    <color name="gray">#9E9E9E</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="green">#4CAF50</color>
+    <color name="gray_500">#9E9E9E</color>
+    <color name="green_500">#4CAF50</color>
+    <color name="orange_500">#FF9800</color>
+    <color name="red">#F44336</color>
+
+    <!-- Se eliminaron los duplicados de menu_icon_color y menu_text_color de aquí
+         porque ya existen como archivos selectores en la carpeta res/color/ -->
+</resources>

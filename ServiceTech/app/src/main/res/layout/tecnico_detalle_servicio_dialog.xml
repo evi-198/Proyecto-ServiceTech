@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Elemento visual utilizado para representar el detalle de un servicio
+    asignado dentro de la lista del módulo Técnico. Muestra la información
+    principal de la orden y permite acceder a la gestión del estado del servicio.
+-->
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="8dp"
+    android:layout_margin="16dp">
+
+    <!-- Contenedor principal de la información del servicio. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Sección de encabezado del servicio con identificación visual. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_servicio"
+                app:tint="#1E40AF" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Detalle del Servicio"
+                android:textColor="#1E40AF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Información detallada del servicio asignado al técnico. -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E5E7EB"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/txtDetalleTipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Servicio: Carga..."
+            android:textColor="#1F2937"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/txtDetalleEstado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estado: Pendiente"
+            android:textColor="#4B5563"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:background="@drawable/bg_estado_pendiente" />
+
+        <TextView
+            android:id="@+id/txtDetalleFecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fecha: 01/01/2024"
+            android:textColor="#6B7280"
+            android:textSize="14sp"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descripción:"
+            android:textColor="#374151"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/txtDetalleDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Aquí va la descripción completa del servicio asignado al técnico..."
+            android:textColor="#4B5563"
+            android:textSize="14sp"
+            android:lineSpacingExtra="4dp"/>
+
+        <!-- Acción para acceder a la actualización del estado del servicio. -->
+        <Button
+            android:id="@+id/btnIrAActualizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Gestionar Estado"
+            android:textAllCaps="false"
+            android:backgroundTint="#10B981"
+            android:textColor="@android:color/white"
+            app:cornerRadius="12dp"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

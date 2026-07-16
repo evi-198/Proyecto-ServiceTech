@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Ítem utilizado para mostrar un servicio asignado al técnico.
+    Presenta la información principal del servicio y permite acceder
+    a la actualización de su estado dentro del flujo de atención.
+-->
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="14dp"
+    card_view:cardElevation="4dp">
+
+
+    <!--
+        Contenedor principal de información del servicio.
+        Organiza los datos visibles dentro de la tarjeta.
+    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+
+        <!--
+            Sección de identificación del servicio.
+            Muestra el tipo de servicio asignado al técnico.
+        -->
+        <TextView
+            android:id="@+id/txtTipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de Servicio"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#111827" />
+
+
+        <!-- Descripción del requerimiento solicitado por el cliente -->
+        <TextView
+            android:id="@+id/txtDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Descripción del servicio"
+            android:textColor="#4B5563"
+            android:textSize="14sp" />
+
+
+        <!--
+            Indicador visual del estado actual del servicio.
+            Permite al técnico identificar rápidamente la situación
+            del trabajo asignado.
+        -->
+        <TextView
+            android:id="@+id/txtEstado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:text="Estado"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_estado_pendiente" />
+
+
+        <!-- Información de fecha de creación del servicio -->
+        <TextView
+            android:id="@+id/txtFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Fecha de creación"
+            android:textSize="12sp"
+            android:textColor="#6B7280" />
+
+
+        <!--
+            Acción principal del técnico.
+            Permite ingresar al proceso de actualización del estado
+            del servicio seleccionado.
+        -->
+        <Button
+            android:id="@+id/btnActualizarEstado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Actualizar estado"
+            android:textAllCaps="false"
+            android:backgroundTint="#10B981"
+            android:textColor="@android:color/white" />
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

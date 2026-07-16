@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Pantalla Mis Reportes del panel técnico.
+    Permite al técnico consultar información de sus servicios realizados
+    mediante un rango de fechas y visualizar un resumen del reporte generado.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F4F6F9"
+    tools:context=".ui.tecnico.reportes.MisReportesActivity">
+
+
+    <!-- Título principal de la pantalla de reportes -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mis Reportes"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:padding="16dp" />
+
+
+    <!--
+        Sección de selección del periodo del reporte.
+        Permite definir la fecha inicial y fecha final para filtrar
+        los servicios que serán incluidos en el reporte.
+    -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="3dp">
+
+
+        <!-- Contenedor de controles para generar el reporte -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+
+            <!--
+                Botones utilizados para seleccionar el rango de fechas
+                que será utilizado en la consulta del reporte.
+            -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnFechaInicio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="Desde"
+                    android:textAllCaps="false"
+                    android:backgroundTint="#1E40AF" />
+
+                <Button
+                    android:id="@+id/btnFechaFin"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="Hasta"
+                    android:textAllCaps="false"
+                    android:backgroundTint="#1E40AF" />
+
+            </LinearLayout>
+
+
+            <!-- Acción para procesar y mostrar el reporte generado -->
+            <Button
+                android:id="@+id/btnGenerarReporte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Generar reporte"
+                android:textAllCaps="false"
+                android:backgroundTint="#2563EB" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <!--
+        Sección de resumen del reporte.
+        Permanece oculta hasta que exista información generada
+        después de seleccionar un periodo válido.
+    -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardResumenReporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="3dp">
+
+
+        <!-- Información estadística del reporte generado -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <TextView
+                android:id="@+id/txtResumenTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#111827" />
+
+            <TextView
+                android:id="@+id/txtTotalServicios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="14sp"
+                android:textColor="#374151" />
+
+            <TextView
+                android:id="@+id/txtResumenEstados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="14sp"
+                android:textColor="#374151" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <!-- Mensaje mostrado cuando todavía no existe un reporte generado -->
+    <TextView
+        android:id="@+id/txtSinReporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="8dp"
+        android:text="Selecciona un periodo y pulsa Generar reporte"
+        android:textColor="#9CA3AF"
+        android:textSize="14sp" />
+
+
+    <!--
+        Lista de servicios incluidos dentro del reporte.
+        Muestra el detalle de los servicios obtenidos según el periodo seleccionado.
+    -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerReporte"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp"
+        tools:listitem="@layout/tecnico_reporte_servicio_item" />
+
+
+    <!--
+        Menú inferior de navegación del técnico.
+        Permite acceder rápidamente a las principales secciones:
+        inicio, servicios asignados, reportes y cierre de sesión.
+    -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bottomMenuCard"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp">
+
+
+        <!-- Opciones principales de navegación del panel técnico -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+
+            <!-- Acceso al inicio del panel técnico -->
+            <LinearLayout
+                android:id="@+id/btnInicio"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/inicio_icono"
+                    app:tint="#6B7280" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Inicio"
+                    android:textColor="#6B7280"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+
+            <!-- Acceso a la lista de servicios asignados -->
+            <LinearLayout
+                android:id="@+id/btnAsignados"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/clientes_icono"
+                    app:tint="#6B7280" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Asignados"
+                    android:textColor="#6B7280"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+
+            <!-- Opción activa correspondiente a la pantalla de reportes -->
+            <LinearLayout
+                android:id="@+id/btnReportes"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/reporte_icono"
+                    app:tint="#1E40AF" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mis Reportes"
+                    android:textColor="#1E40AF"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+
+            <!-- Acción para cerrar la sesión del técnico -->
+            <LinearLayout
+                android:id="@+id/btnLogout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/cerrar_sesion_icono"
+                    app:tint="#6B7280" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cerrar Sesión"
+                    android:textColor="#6B7280"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

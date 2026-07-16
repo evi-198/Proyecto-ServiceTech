@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Tarjeta utilizada para mostrar la información de un técnico. -->
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
+
+    <!-- Contenedor principal de la información del técnico. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <!-- Nombre del técnico. -->
+        <TextView
+            android:id="@+id/txtNombreTecnico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre Técnico"
+            android:textColor="#111827"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Correo electrónico del técnico. -->
+        <TextView
+            android:id="@+id/txtCorreoTecnico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="correo@ejemplo.com"
+            android:textColor="#4B5563"
+            android:textSize="14sp" />
+
+        <!-- Número de teléfono del técnico. -->
+        <TextView
+            android:id="@+id/txtTelefonoTecnico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Teléfono: 123456789"
+            android:textColor="#6B7280"
+            android:textSize="13sp" />
+
+        <!-- Sección que muestra el estado de carga del técnico. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- Indicador de la carga de trabajo del técnico. -->
+            <TextView
+                android:id="@+id/chipCarga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="5dp"
+                android:text="0 / 10 activas"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_estado_finalizado" />
+
+            <!-- Cantidad de servicios finalizados por el técnico. -->
+            <TextView
+                android:id="@+id/txtFinalizadasTecnico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="0 finalizadas"
+                android:textColor="#6B7280"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

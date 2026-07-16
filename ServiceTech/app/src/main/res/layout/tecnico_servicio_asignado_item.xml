@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Ítem utilizado para mostrar un servicio asignado dentro de una lista.
+    Presenta la información básica del servicio como tipo, descripción,
+    estado y fecha de creación.
+-->
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardElevation="4dp">
+
+
+    <!--
+        Contenedor principal de la tarjeta.
+        Organiza la información visible del servicio asignado.
+    -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <!--
+            Información principal del servicio.
+            Muestra el tipo de atención asignada al técnico.
+        -->
+        <TextView
+            android:id="@+id/txtTipo"
+            android:text="Tipo Servicio"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <!-- Descripción del servicio solicitado -->
+        <TextView
+            android:id="@+id/txtDescripcion"
+            android:text="Descripción del servicio"
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <!--
+            Indicador visual del estado actual del servicio.
+            El valor y apariencia pueden actualizarse dinámicamente
+            según el estado registrado en el sistema.
+        -->
+        <TextView
+            android:id="@+id/txtEstado"
+            android:text="Estado"
+            android:textStyle="bold"
+            android:layout_marginTop="6dp"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_estado_pendiente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <!-- Información de fecha asociada al servicio -->
+        <TextView
+            android:id="@+id/txtFecha"
+            android:text="Fecha"
+            android:textSize="12sp"
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

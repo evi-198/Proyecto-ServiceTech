@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Usando el púrpura del sistema (#673AB7) -->
+    <solid android:color="@color/color_asignado"/>
+    <corners android:radius="50dp"/>
+</shape>

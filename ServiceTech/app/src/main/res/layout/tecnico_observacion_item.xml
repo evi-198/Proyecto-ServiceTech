@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Ítem utilizado para mostrar una observación registrada dentro de un servicio.
+    Presenta la información del técnico, fecha y comentario asociado,
+    además de permitir eliminar la observación cuando corresponda.
+-->
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    app:cardBackgroundColor="#F9FAFB"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="1dp">
+
+
+    <!--
+        Contenedor principal del elemento.
+        Organiza la información de la observación junto con la acción disponible.
+    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical">
+
+
+        <!--
+            Sección de información de la observación.
+            Contiene los datos descriptivos registrados por el técnico.
+        -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtObsTecnico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#1E40AF"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtObsFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textSize="12sp"
+                android:textColor="#6B7280" />
+
+            <TextView
+                android:id="@+id/txtObsComentario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textColor="#374151"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+
+        <!--
+            Acción para eliminar una observación registrada.
+            El botón se utiliza para ejecutar la eliminación desde el adaptador.
+        -->
+        <ImageButton
+            android:id="@+id/btnEliminarObservacion"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Eliminar observación"
+            android:padding="12dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_eliminar" />
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

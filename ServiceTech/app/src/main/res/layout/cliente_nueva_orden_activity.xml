@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F6F9"
+    tools:context=".ui.cliente.NuevaOrdenActivity">
+
+    <!-- Tarjeta principal que contiene el formulario para registrar una nueva orden de servicio. -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardFormulario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.3">
+
+        <!-- Contenedor que organiza verticalmente los elementos del formulario. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp"
+            android:orientation="vertical">
+
+            <!-- Título que identifica el formulario de creación de servicios. -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nueva Orden de Servicio"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#1F2937"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- Lista desplegable para seleccionar el tipo de servicio. -->
+            <Spinner
+                android:id="@+id/spinnerTipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:layout_marginBottom="20dp"/>
+
+
+            <!-- Campo donde el cliente ingresa la descripción del servicio solicitado. -->
+            <EditText
+                android:id="@+id/edtDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ingrese la descripción del servicio"
+                android:minLines="3"
+                android:inputType="textMultiLine"
+                android:padding="12dp"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Botón que envía la información para crear la nueva orden de servicio. -->
+            <Button
+                android:id="@+id/btnCrear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Crear Servicio"
+                android:backgroundTint="#2BB673"
+                android:textColor="@android:color/white"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Menú de navegación inferior utilizado en las pantallas del cliente. -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bottomMenuCard"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="50dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Contenedor que organiza horizontalmente las opciones del menú. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:gravity="center">
+
+            <!-- Opción para regresar a la pantalla principal del cliente. -->
+            <LinearLayout
+                android:id="@+id/btnInicio"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/iconInicio"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/inicio_icono"
+                    app:tint="@color/menu_icon_color" />
+
+                <TextView
+                    android:id="@+id/textInicio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Inicio"
+                    android:textColor="@color/menu_text_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Opción para acceder al listado de servicios del cliente. -->
+            <LinearLayout
+                android:id="@+id/btnMisServicios"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/iconMisServicios"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/servicios_icono"
+                    app:tint="@color/menu_icon_color" />
+
+                <TextView
+                    android:id="@+id/textMisServicios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mis Servicios"
+                    android:textColor="@color/menu_text_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Opción para consultar el historial de servicios. -->
+            <LinearLayout
+                android:id="@+id/btnHistorial"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/iconHistorial"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/historial_icono"
+                    app:tint="@color/menu_icon_color" />
+
+                <TextView
+                    android:id="@+id/textHistorial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Historial"
+                    android:textColor="@color/menu_text_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Opción para cerrar la sesión del usuario autenticado. -->
+            <LinearLayout
+                android:id="@+id/btnLogout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/iconLogout"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/cerrar_sesion_icono"
+                    app:tint="@color/menu_icon_color" />
+
+                <TextView
+                    android:id="@+id/textLogout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cerrar Sesión"
+                    android:textColor="@color/menu_text_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

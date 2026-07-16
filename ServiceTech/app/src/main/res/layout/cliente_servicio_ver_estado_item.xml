@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Representa un elemento de la lista de servicios activos del cliente.
+    Muestra la información principal del servicio, incluyendo su descripción,
+    fecha de creación, tipo de servicio y estado actual.
+-->
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="6dp"
+    app:cardUseCompatPadding="true">
+
+    <!--
+        Contenedor principal que organiza la línea de estado y la
+        información del servicio de manera horizontal.
+    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--
+            Indicador visual del estado del servicio.
+            Su color se actualiza dinámicamente desde el Adapter
+            según el estado registrado.
+        -->
+        <View
+            android:id="@+id/viewLinea"
+            android:layout_width="6dp"
+            android:layout_height="match_parent"
+            android:background="@color/teal_200" />
+
+        <!--
+            Contenedor que agrupa toda la información del servicio.
+        -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+            <!--
+                Encabezado con el icono representativo y la descripción
+                principal del servicio.
+            -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- Icono representativo del servicio -->
+                <ImageView
+                    android:id="@+id/imgIcono"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_servicio"
+                    android:layout_marginEnd="8dp"/>
+
+                <!-- Descripción principal del servicio -->
+                <TextView
+                    android:id="@+id/txtDescripcion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reparación de laptop"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <!-- Fecha de creación del servicio -->
+            <TextView
+                android:id="@+id/txtFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha: 12/02/2026"
+                android:textColor="#666"
+                android:layout_marginTop="4dp"/>
+
+            <!-- Tipo de servicio solicitado -->
+            <TextView
+                android:id="@+id/txtTipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tipo: Hardware"
+                android:textColor="#666"/>
+
+            <!--
+                Estado actual del servicio mostrado como una etiqueta (badge).
+                El fondo cambia dinámicamente desde el Adapter de acuerdo
+                con el estado del servicio.
+            -->
+            <TextView
+                android:id="@+id/txtEstado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:text="PENDIENTE"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bg_estado_pendiente"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

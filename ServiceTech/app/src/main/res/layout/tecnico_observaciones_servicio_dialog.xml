@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Diálogo utilizado para gestionar las observaciones de un servicio.
+    Permite visualizar el historial de observaciones registradas,
+    agregar nuevos comentarios y mantener el seguimiento del trabajo técnico.
+-->
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="8dp">
+
+
+    <!--
+        Contenedor principal del diálogo.
+        Agrupa la información del servicio, historial y acciones disponibles.
+    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:padding="20dp">
+
+
+        <!--
+            Sección de identificación del servicio seleccionado.
+            Muestra la información principal del servicio asociado
+            a las observaciones.
+        -->
+        <TextView
+            android:id="@+id/txtTituloServicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#1E40AF" />
+
+
+        <!--
+            Sección donde se visualiza el historial de observaciones.
+            Presenta los registros existentes asociados al servicio.
+        -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Historial de observaciones"
+            android:textStyle="bold"
+            android:textColor="#374151" />
+
+
+        <!-- Lista de observaciones registradas del servicio -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerObservacionesDialog"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/white" />
+
+
+        <!--
+            Mensaje informativo mostrado cuando el servicio
+            todavía no cuenta con observaciones registradas.
+        -->
+        <TextView
+            android:id="@+id/txtSinObservaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Sin observaciones registradas"
+            android:textColor="#9CA3AF"
+            android:visibility="gone" />
+
+
+        <!--
+            Campo de registro para agregar una nueva observación.
+            Permite al técnico ingresar comentarios adicionales
+            relacionados al servicio.
+        -->
+        <EditText
+            android:id="@+id/edtNuevaObservacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:minLines="3"
+            android:gravity="top"
+            android:hint="Escribe una observación..."
+            android:inputType="textMultiLine"
+            android:background="@android:color/white" />
+
+
+        <!--
+            Acción para guardar la nueva observación.
+            Envía la información registrada hacia el servicio backend
+            para asociarla al servicio seleccionado.
+        -->
+        <Button
+            android:id="@+id/btnGuardarObservacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Agregar observación"
+            android:textAllCaps="false"
+            android:backgroundTint="#10B981" />
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

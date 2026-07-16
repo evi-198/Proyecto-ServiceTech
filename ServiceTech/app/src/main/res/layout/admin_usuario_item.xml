@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Tarjeta utilizada para mostrar la información de un usuario. -->
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
+
+    <!-- Contenedor principal de la información del usuario. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <!-- Nombre del usuario. -->
+        <TextView
+            android:id="@+id/txtNombreUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre Usuario"
+            android:textColor="#111827"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Correo electrónico del usuario. -->
+        <TextView
+            android:id="@+id/txtCorreoUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="correo@ejemplo.com"
+            android:textColor="#4B5563"
+            android:textSize="14sp" />
+
+        <!-- Sección que muestra los datos adicionales del usuario. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <!-- Número de teléfono del usuario. -->
+            <TextView
+                android:id="@+id/txtTelefonoUsuario"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Teléfono: 123456789"
+                android:textColor="#6B7280"
+                android:textSize="13sp" />
+
+            <!-- Rol asignado al usuario dentro del sistema. -->
+            <TextView
+                android:id="@+id/txtRolUsuario"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ROL"
+                android:textAlignment="viewEnd"
+                android:textColor="#6B7280"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Contenedor de las acciones disponibles para el usuario. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <!-- Botón para editar la información del usuario. -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEditarUsuario"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:paddingHorizontal="12dp"
+                android:text="Editar"
+                android:textAllCaps="false"
+                android:textColor="#0F172A"
+                app:icon="@android:drawable/ic_menu_edit"
+                app:iconPadding="6dp"
+                app:iconTint="#0F172A" />
+
+            <!-- Botón para eliminar el usuario. -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEliminarUsuario"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:minWidth="0dp"
+                android:paddingHorizontal="12dp"
+                android:text="Eliminar"
+                android:textAllCaps="false"
+                android:textColor="#B91C1C"
+                app:icon="@drawable/ic_eliminar"
+                app:iconPadding="6dp"
+                app:iconTint="#B91C1C" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

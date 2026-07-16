@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Layout utilizado para representar una alerta dentro de una lista.
+    Contiene un indicador visual, un ícono y el mensaje descriptivo.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:background="@android:color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="12dp">
+
+    <!-- Barra lateral que identifica visualmente el tipo de alerta. -->
+    <View
+        android:id="@+id/indicadorAlerta"
+        android:layout_width="4dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dp"
+        android:background="#F59E0B" />
+
+    <!-- Ícono representativo de la alerta mostrada. -->
+    <ImageView
+        android:id="@+id/iconoAlerta"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ordenes_icono"
+        app:tint="#F59E0B" />
+
+    <!-- Texto que muestra el contenido o descripción de la alerta. -->
+    <TextView
+        android:id="@+id/txtAlerta"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_weight="1"
+        android:text="Texto de la alerta"
+        android:textColor="#374151"
+        android:textSize="13sp" />
+
+</LinearLayout>
