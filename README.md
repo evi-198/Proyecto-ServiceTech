@@ -127,8 +127,44 @@ El proceso principal de ServiceTech comprende la creación, asignación, atenci�
 
 El cliente inicia una nueva solicitud seleccionando el tipo de servicio y describiendo el problema que requiere atención.
 
+<img width="277" height="617" alt="image (4)" src="https://github.com/user-attachments/assets/d161cfab-d431-49cc-bdcd-8e1d882944a8" />
 
+### 2. Asignación del técnico
 
+El administrador visualiza las órdenes pendientes y asigna el técnico responsable de atender el servicio.
 
+<img width="276" height="621" alt="image (5)" src="https://github.com/user-attachments/assets/ff253b8d-a9ba-4128-a8d4-996fc00ef231" />
 
+### 3. Atención del servicio
 
+El técnico consulta los servicios asignados, actualiza el estado de la orden y registra observaciones sobre el trabajo realizado durante la atención.
+
+<img width="277" height="617" alt="image (6)" src="https://github.com/user-attachments/assets/6f84962d-01e8-41ce-aee7-954afa620069" />
+
+<img width="276" height="617" alt="image (7)" src="https://github.com/user-attachments/assets/30ae6184-0c20-441c-9166-922319924a70" />
+
+### 4. Seguimiento y finalización
+
+El cliente puede consultar en cualquier momento el estado de su servicio registradas por el técnico hasta la finalización de la orden.
+
+<img width="275" height="619" alt="image (8)" src="https://github.com/user-attachments/assets/4dd40a15-5672-420d-890a-702f247bccda" />
+
+# 9. Instalación y ejecución
+
+## Requisitos
+
+- Android Studio
+- JDK 17 o superior
+- MySQL Server
+- Maven
+- Git
+
+## Pasos para ejecutar el proyecto
+
+1. Clonar el repositorio.
+2. Crear la base de datos MySQL e importar el script SQL del proyecto.
+3. Configurar las credenciales de la base de datos en el archivo `application.properties`.
+4. Ejecutar el backend con Spring Boot.
+5. Abrir el proyecto Android en Android Studio.
+6. Configurar la URL base de la API en el cliente Android.
+7. Ejecutar la aplicación en un emulador o dispositivo físico.
