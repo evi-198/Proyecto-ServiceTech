@@ -33,5 +33,14 @@ ServiceTech ofrece las siguientes funcionalidades principales:
 - Generación de reportes para técnicos por rango de fechas.
 - Autenticación y autorización mediante **Spring Security** con **JWT**.
 
+## 4. Roles del sistema
+
+ServiceTech cuenta con tres tipos de usuarios, cada uno con funcionalidades específicas dentro del proceso de gestión de servicios técnicos.
+
+### Cliente
+
+<img width="274" height="617" alt="image" src="https://github.com/user-attachments/assets/cf07812b-34e9-44ad-bab0-cba4ac09055c" />
+
+
 
 
