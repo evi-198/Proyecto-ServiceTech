@@ -71,6 +71,23 @@ ServiceTech implementa una arquitectura cliente-servidor compuesta por una aplic
 
 <img width="612" height="591" alt="image (3)" src="https://github.com/user-attachments/assets/3f41a58c-e45a-4196-ad18-c9a000ee8d52" />
 
+## 6. Tecnologías utilizadas
+
+ServiceTech fue desarrollado utilizando las siguientes tecnologías:
+
+| Tecnología | Uso |
+| :--- | :--- |
+| Android Studio | Desarrollo de la aplicación móvil |
+| Kotlin | Desarrollo del cliente Android |
+| XML | Diseño de interfaces de usuario |
+| Spring Boot | Desarrollo de la API REST |
+| Spring Security + JWT | Autenticación y autorización |
+| Spring Data JPA | Persistencia de datos |
+| Hibernate | Mapeo objeto-relacional (ORM) |
+| MySQL | Base de datos relacional |
+| Retrofit | Consumo de la API REST desde Android |
+| Git y GitHub | Control de versiones y alojamiento del proyecto |
+
 
 
 
