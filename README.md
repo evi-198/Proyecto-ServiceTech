@@ -41,6 +41,36 @@ ServiceTech cuenta con tres tipos de usuarios, cada uno con funcionalidades espe
 
 <img width="274" height="617" alt="image" src="https://github.com/user-attachments/assets/cf07812b-34e9-44ad-bab0-cba4ac09055c" />
 
+- Crear una nueva orden de servicio.
+- Consultar servicios activos.
+- Revisar el historial de servicios.
+- Visualizar el estado de sus servivios.
+
+### Técnico
+
+<img width="277" height="620" alt="image (1)" src="https://github.com/user-attachments/assets/f3e4e509-89d1-4ac9-bbc1-9aff58cbbe38" />
+
+- Consultar los servicios asignados.
+- Actualizar el estado de una orden de servicio.
+- Registrar y eliminar observaciones.
+- Generar reportes de servicios atendidos por rango de fechas.
+
+### Administrador
+
+<img width="276" height="618" alt="image (2)" src="https://github.com/user-attachments/assets/72582b00-abc0-45cb-9bd1-c3d11eea59ad" />
+
+- Gestionar usuarios del sistema.
+- Visualizar todas las órdenes de servicio.
+- Asignar técnicos a las órdenes.
+- Gestionar los tipos de servicio.
+- Administrar el listado de técnicos.
+
+# 5. Arquitectura General del sistema
+
+ServiceTech implementa una arquitectura cliente-servidor compuesta por una aplicación móvil Android y un backend desarrollado con Spring Boot. La aplicación se comunica con el servidor mediante una API REST, mientras que la información se almacena en una base de datos MySQL. La autenticación y autorización de los usuarios se realiza mediante Spring Security con JWT, garantizando un acceso seguro a los recursos del sistema.
+
+<img width="612" height="591" alt="image (3)" src="https://github.com/user-attachments/assets/3f41a58c-e45a-4196-ad18-c9a000ee8d52" />
+
 
 
 
