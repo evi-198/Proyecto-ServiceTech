@@ -18,3 +18,20 @@ De manera específica, el proyecto busca:
 - Centralizar la gestión de usuarios, técnicos y tipos de servicio.
 - Implementar una arquitectura cliente-servidor basada en una API REST segura.
 - Aplicar buenas prácticas de desarrollo utilizando Spring Boot, Android Studio y Spring Security con autenticación JWT.
+
+## 3. Funcionalidades principales
+
+ServiceTech ofrece las siguientes funcionalidades principales:
+
+- Registro e inicio de sesión de usuarios.
+- Creación y gestión de órdenes de servicio.
+- Asignación de técnicos a las órdenes de servicio.
+- Actualización del estado de los servicios.
+- Registro y consulta de observaciones realizadas por los técnicos.
+- Consulta de servicios activos e historial de servicios.
+- Administración de usuarios y tipos de servicio.
+- Generación de reportes para técnicos por rango de fechas.
+- Autenticación y autorización mediante **Spring Security** con **JWT**.
+
+
+
