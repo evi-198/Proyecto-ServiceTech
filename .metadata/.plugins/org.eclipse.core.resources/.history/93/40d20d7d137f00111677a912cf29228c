@@ -1,0 +1,5 @@
+package com.servicetech.config;
+
+public class SecurityConfig {
+
+}
