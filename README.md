@@ -117,6 +117,15 @@ ServiceTech
     ├── security/
     ├── service/
     └── resources/
+```
+
+# 8. Flujo principal del sistema
+
+El proceso principal de ServiceTech comprende la creación, asignación, atención y seguimiento de una orden de servicio. El flujo general se desarrolla de la siguiente manera:
+
+### 1. Creación de la orden de servicio
+
+El cliente inicia una nueva solicitud seleccionando el tipo de servicio y describiendo el problema que requiere atención.
 
 
 
