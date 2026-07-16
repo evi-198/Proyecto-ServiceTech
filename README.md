@@ -88,6 +88,38 @@ ServiceTech fue desarrollado utilizando las siguientes tecnologías:
 | Retrofit | Consumo de la API REST desde Android |
 | Git y GitHub | Control de versiones y alojamiento del proyecto |
 
+## 7. Estructura del proyecto
+
+El proyecto está dividido en dos componentes principales: una aplicación móvil desarrollada en Android y un backend desarrollado con Spring Boot.
+
+```text
+ServiceTech
+├── app/                  # Aplicación Android
+│   ├── data/
+│   │   ├── model/
+│   │   ├── remote/
+│   │   └── repository/
+│   ├── ui/
+│   │   ├── admin/
+│   │   ├── auth/
+│   │   ├── cliente/
+│   │   └── tecnico/
+│   ├── utils/
+│   ├── res/
+│   ├── MainActivity
+│   └── ServiceTechApp
+└── backend/              # API REST Spring Boot
+    ├── config/
+    ├── controller/
+    ├── dto/
+    ├── model/
+    ├── repository/
+    ├── security/
+    ├── service/
+    └── resources/
+
+
+
 
 
 
