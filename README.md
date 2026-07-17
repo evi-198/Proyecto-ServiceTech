@@ -57,7 +57,7 @@ ServiceTech cuenta con tres tipos de usuarios, cada uno con funcionalidades espe
 
 ### Administrador
 
-<img width="716" height="1600" alt="WhatsApp Image 2026-07-16 at 7 29 32 PM (1)" src="https://github.com/user-attachments/assets/e27a430b-0c4e-433d-b202-3be5fd679487" />
+<img width="276" height="618" alt="image (2)" src="https://github.com/user-attachments/assets/d06818be-a6d4-468f-9ce4-d8eb485eaf1b" />
 
 - Gestionar usuarios del sistema.
 - Visualizar todas las órdenes de servicio.
