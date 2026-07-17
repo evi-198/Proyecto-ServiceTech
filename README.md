@@ -39,7 +39,7 @@ ServiceTech cuenta con tres tipos de usuarios, cada uno con funcionalidades espe
 
 ### Cliente
 
-<img width="716" height="1600" alt="WhatsApp Image 2026-07-16 at 7 29 06 PM" src="https://github.com/user-attachments/assets/3f41c85a-287c-4583-9d2a-61651a20f54b" />
+<img width="274" height="617" alt="image" src="https://github.com/user-attachments/assets/eeca8cc9-722c-4a93-bb8b-6d5ee5175461" />
 
 - Crear una nueva orden de servicio.
 - Consultar servicios activos.
@@ -48,7 +48,7 @@ ServiceTech cuenta con tres tipos de usuarios, cada uno con funcionalidades espe
 
 ### Técnico
 
-<img width="716" height="1600" alt="WhatsApp Image 2026-07-16 at 7 29 32 PM" src="https://github.com/user-attachments/assets/cf7e4cd2-392d-420d-9b43-3f4666ec128e" />
+<img width="275" height="616" alt="image" src="https://github.com/user-attachments/assets/59d6bce0-8bbf-4c10-8153-c3a6833c6f2a" />
 
 - Consultar los servicios asignados.
 - Actualizar el estado de una orden de servicio.
